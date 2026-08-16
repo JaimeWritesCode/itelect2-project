@@ -3,6 +3,9 @@ My IT Elective 2 backend web development project.
 
 This project was started on July 1, 2026.
 
+## GT7: Postman SS
+![POSTMAN check](GT7ss.png)
+
 ## API Testing
 
 ![GET Request](./GETcheck.png)
