@@ -1,4 +1,4 @@
-import { fetchSampleUsers } from './api.js';
+import { fetchSampleUsers } from './routes/api.js';
 import { formatDate, validateTask, mergeTaskUpdate, createTask, TaskValidationError } from './utils.js';
 console.log('Server starting...');
 
