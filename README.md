@@ -3,50 +3,42 @@ My IT Elective 2 backend web development project.
 
 This project was started on July 1, 2026.
 
-## GT8 Postman & Database Proofs
+## GT8 Postman & Database Screenshots
 
-### Category A: Standard GET Endpoints
+### GET 
 * **GET /api/users (200 OK)**
-  ![GET Users]
+  ![Get Users](./GT8GETusers.png)
 
-* **GET /api/tasks with User JOIN (200 OK)**
-  ![Initial GET Tasks]
+* **GET /api/tasks with (200 OK)**
+  ![Initial GET Tasks](./GT8GETtasks.png)
 
 * **GET /api/tasks/999 (404 Not Found)**
-  ![GET Task 999 404]
+  ![GET Task 999 404](./GT8GETtasks999.png)
+
+  **GET /api/tasks/6**
+  ![GET Task 6](./GT8GETtasks6.png)
 
 ---
 
-### Category B: POST Lifecycle (Create & Verify)
+### POST 
 * **POST /api/tasks (201 Created)**
-  ![POST Task 201]
-
-* **GET /api/tasks (Verification after POST)**
-  ![GET Tasks After POST]
+  ![POST Task 201](./GT8POSTtasks.png)
 
 ---
 
-### Category C: PUT Lifecycle (Update & Verify)
-* **GET /api/tasks/1 (Before Update)**
-  ![GET Task 1 Before PUT]
+### PUT 
 
-* **PUT /api/tasks/1 (200 OK)**
-  ![PUT Task 1]
-
-* **GET /api/tasks/1 (After Update)**
-  ![GET Task 1 After PUT]
+* **PUT /api/tasks/2 (200 OK)**
+  ![PUT Task 2](./GT8PUTtasks2.png)
 
 ---
 
-### Category D: DELETE Lifecycle (Delete & Verify 404)
-* **DELETE /api/tasks/:id (200 OK)**
-  ![DELETE Task]
-
-* **GET /api/tasks/:id (404 Verification after DELETE)**
-  ![GET Task After DELETE 404]
+### DELETE 
+* **DELETE /api/tasks/6 (200 OK)**
+  ![DELETE Task](./GT8DELETEtasks6.png)
 
 ---
 
-### Category E: Database State
-* **pgAdmin Table Rows (Users & Tasks)**
-  ![pgAdmin Rows]
+### Database Screenshots (Users & Tasks)**
+  ![pgAdmin Users](./GT8pgadminUsers.png)
+   ![pgAdmin Tasks](./GT8pgadminTasks.png)
