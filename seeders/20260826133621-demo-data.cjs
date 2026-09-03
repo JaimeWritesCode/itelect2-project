@@ -1,28 +1,30 @@
 'use strict';
+const bcrypt = require('bcryptjs');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
     const now = new Date();
+    const defaultPassword = await bcrypt.hash('Password123!', 10);
 
     await queryInterface.bulkInsert('Users', [
-      { name: 'Ukinami Yuzuha', email: 'yuzuha@example.com', createdAt: now, updatedAt: now },
-      { name: 'Billy Kid', email: 'billy@example.com', createdAt: now, updatedAt: now },
-      { name: 'Promeia', email: 'promeia@example.com', createdAt: now, updatedAt: now }
+      { email: 'yuzuha@example.com', password: defaultPassword, role: 'member', createdAt: now, updatedAt: now },
+      { email: 'billy@example.com', password: defaultPassword, role: 'member', createdAt: now, updatedAt: now },
+      { email: 'promeia@example.com', password: defaultPassword, role: 'member', createdAt: now, updatedAt: now }
     ]);
 
     const users = await queryInterface.sequelize.query(
-      'SELECT id, name FROM "Users";',
+      'SELECT id, email FROM "Users";',
       { type: Sequelize.QueryTypes.SELECT }
     );
 
-    const getIdOf = (name) => users.find((u) => u.name === name).id;
+    const getIdOf = (email) => users.find((u) => u.email === email).id;
 
     await queryInterface.bulkInsert('Tasks', [
-      { title: 'Setup Development Environment', completed: true, userId: getIdOf('Ukinami Yuzuha'), createdAt: now, updatedAt: now },
-      { title: 'Configure Sequelize ORM', completed: true, userId: getIdOf('Ukinami Yuzuha'), createdAt: now, updatedAt: now },
-      { title: 'Build Database Seeders', completed: false, userId: getIdOf('Billy Kid'), createdAt: now, updatedAt: now },
-      { title: 'Implement Express API Routes', completed: false, userId: getIdOf('Billy Kid'), createdAt: now, updatedAt: now },
-      { title: 'Run Postman Collection Tests', completed: false, userId: getIdOf('Promeia'), createdAt: now, updatedAt: now }
+      { title: 'Setup Development Environment', completed: true, userId: getIdOf('yuzuha@example.com'), createdAt: now, updatedAt: now },
+      { title: 'Configure Sequelize ORM', completed: true, userId: getIdOf('yuzuha@example.com'), createdAt: now, updatedAt: now },
+      { title: 'Build Database Seeders', completed: false, userId: getIdOf('billy@example.com'), createdAt: now, updatedAt: now },
+      { title: 'Implement Express API Routes', completed: false, userId: getIdOf('billy@example.com'), createdAt: now, updatedAt: now },
+      { title: 'Run Postman Collection Tests', completed: false, userId: getIdOf('promeia@example.com'), createdAt: now, updatedAt: now }
     ]);
   },
 
