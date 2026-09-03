@@ -1,7 +1,16 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import dotenv from 'dotenv'; 
 import router from './routes/api.js';
+import authRouter from './routes/auth.js';
+
+dotenv.config();
+
+if (!process.env.JWT_SECRET) {
+  console.error('FATAL ERROR: JWT_SECRET is not defined in environment variables.');
+  process.exit(1);
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,7 +19,8 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.use('/api', router);
+app.use('/api/auth', authRouter); 
+app.use('/api', router);         
 
 app.use((err, req, res, next) => {
   console.error(err.message);
