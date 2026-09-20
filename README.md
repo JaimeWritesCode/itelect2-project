@@ -9,9 +9,6 @@
 
 ### Postman Tests (DELETE /api/tasks/:id)
 
-* **No token (401 Unauthorized)**
-  ![DELETE no token 401](./screenshots/gt10deleteNoToken.png)
-
 * **Regular user's token (403 Forbidden)**
   ![DELETE as member 403](./screenshots/gt10deleteAsMember.png)
 
