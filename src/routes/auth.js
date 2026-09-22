@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/register', async (req, res) => {
   try {
-    const { email, password, role } = req.body;
+    const { email, password } = req.body;
 
     if (!password || password.length < 6) {
       return res.status(400).json({ error: 'Password must be at least 6 characters long.' });
@@ -24,7 +24,6 @@ router.post('/register', async (req, res) => {
     const user = await User.create({
       email,
       password: hashedPassword,
-      role: role || 'member'
     });
 
     return res.status(201).json(user);

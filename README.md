@@ -1,75 +1,21 @@
-# itelect2-project
-My IT Elective 2 backend web development project.
+## GT10 Role-Based Authorization Screenshots
 
-This project was started on July 1, 2026.
+### Middleware & Route Protection
 
-## GT9 Authentication & Database Screenshots
-
-### Authentication Endpoints
-
-* **POST /api/auth/register (201 Created)**
-  ![POST Register 201](./screenshots/GT9POSTregister.png)
-
-* **POST /api/auth/login (200 OK - Token Issued)**
-  ![POST Login 200](./screenshots/GT9POSTlogin.png)
-
-* **POST /api/auth/login (401 Unauthorized - Invalid Credentials)**
-  ![POST Login 401](./screenshots/GT9POSTlogin401.png)
+* **verifyToken on POST, PUT and DELETE, requireRole('admin') on DELETE (api.js)**
+  ![api.js routes](./screenshots/gt10api.js.png)
 
 ---
 
-### Security & Token Verification
+### Postman Tests (DELETE /api/tasks/:id)
 
-* **JWT Verification & Signature Check (jwt.io)**
-  ![JWT Verification](./screenshots/GT9JWTverification.png)
+* **Regular user's token (403 Forbidden)**
+  ![DELETE as member 403](./screenshots/gt10deleteAsMember.png)
 
----
+* **Admin token (200 OK)**
+  ![DELETE as admin 200](./screenshots/gt10deleteAsAdmin.png)
 
-### Database Screenshots (Hashed Passwords)
-
-* **pgAdmin Users Table**
-  ![pgAdmin GT9 Users](./screenshots/Postgre_EncryptedPassWithRole1.png)
-    ![pgAdmin GT9 Users](./screenshots/Postgre_EncryptedPassWithRole2.png)
-
+* **Admin login (200 OK - Token Issued)**
+  ![Admin token](./screenshots/gt10adminToken.png)
 
 ---
-
-## GT8 Postman & Database Screenshots
-
-### GET 
-* **GET /api/users (200 OK)**
-  ![Get Users](./GT8GETusers.png)
-
-* **GET /api/tasks with (200 OK)**
-  ![Initial GET Tasks](./GT8GETtasks.png)
-
-* **GET /api/tasks/999 (404 Not Found)**
-  ![GET Task 999 404](./GT8GETtasks999.png)
-
-* **GET /api/tasks/6**
-  ![GET Task 6](./GT8GETtasks6.png)
-
----
-
-### POST 
-* **POST /api/tasks (201 Created)**
-  ![POST Task 201](./GT8POSTtasks.png)
-
----
-
-### PUT 
-
-* **PUT /api/tasks/2 (200 OK)**
-  ![PUT Task 2](./GT8PUTtasks2.png)
-
----
-
-### DELETE 
-* **DELETE /api/tasks/6 (200 OK)**
-  ![DELETE Task](./GT8DELETEtasks6.png)
-
----
-
-### Database Screenshots (Users & Tasks)
-![pgAdmin Users](./GT8pgadminUsers.png)
-![pgAdmin Tasks](./GT8pgadminTasks.png)

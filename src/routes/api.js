@@ -1,5 +1,7 @@
 import express from 'express';
-import db from '../../models/index.cjs'; 
+import db from '../../models/index.cjs';
+import verifyToken from '../middleware/verifyToken.js';
+import requireRole from '../middleware/requireRole.js';
 
 const { Task, User } = db;
 const router = express.Router();
@@ -16,6 +18,7 @@ router.get('/users', async (req, res, next) => {
   }
 });
 
+
 router.get('/tasks', async (req, res, next) => {
   try {
     const tasks = await Task.findAll({
@@ -28,6 +31,7 @@ router.get('/tasks', async (req, res, next) => {
   }
 });
 
+
 router.get('/tasks/:id', async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.id, { include: User });
@@ -38,7 +42,8 @@ router.get('/tasks/:id', async (req, res, next) => {
   }
 });
 
-router.post('/tasks', async (req, res, next) => {
+
+router.post('/tasks', verifyToken, async (req, res, next) => {
   try {
     const task = await Task.create(req.body);
     res.status(201).json(task);
@@ -47,7 +52,8 @@ router.post('/tasks', async (req, res, next) => {
   }
 });
 
-router.put('/tasks/:id', async (req, res, next) => {
+
+router.put('/tasks/:id', verifyToken, async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.id);
     if (!task) return res.status(404).json({ error: 'Task not found' });
@@ -58,7 +64,8 @@ router.put('/tasks/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/tasks/:id', async (req, res, next) => {
+// DELETE  admin only
+router.delete('/tasks/:id', verifyToken, requireRole('admin'), async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.id);
     if (!task) return res.status(404).json({ error: 'Task not found' });
